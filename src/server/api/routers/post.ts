@@ -8,11 +8,11 @@ import {
 
 export const postRouter = createTRPCRouter({
 
-    getAll: publicProcedure.query(({ ctx }) => {
+    getAll: protectedProcedure.query(({ ctx }) => {
         return ctx.prisma.post.findMany()
     }),
 
-    getOne: publicProcedure
+    getOne: protectedProcedure
         .input(z.object({ id: z.string() }))
         .query(({ ctx, input }) => {
             return ctx.prisma.post.findUnique({ where: { id: input.id } })
