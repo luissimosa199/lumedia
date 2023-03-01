@@ -7,11 +7,15 @@ const Header: FunctionComponent = () => {
 
   return (
     <header className="flex justify-between p-4">
-      <h1>lumedia</h1>
+      <Link href="/">
+        <h1>lumedia</h1>
+      </Link>
       <nav>
         <ul className="flex gap-2">
-          <li>Sitios</li>
-          <li>Contacto</li>
+          <li><Link href="/">Sitios</Link></li>
+          <li>
+            <Link href="/contact">Contacto</Link>
+          </li>
           {sessionData && (
             <li>
               <Link href="/dashboard">Panel</Link>
