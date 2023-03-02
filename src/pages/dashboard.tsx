@@ -4,15 +4,15 @@ import NewPost from "~/components/newPost/newPost";
 
 const Dashboard: FunctionComponent = () => {
   return (
-    <div>
+    <div className="h-[90%]">
       <h1 className="mx-2">Panel de control de publicaciones</h1>
-      <div className="flex gap-10">
+      <div className="flex h-full">
 
-        <div className="container m-2 w-1/3 p-4">
+        <div className="ml-2 w-1/3 p-2 h-20 overflow-y-auto">
           <LatestPosts />
         </div>
 
-        <div className="w-full">
+        <div className="w-2/3">
           <NewPost/>
         </div>
       </div>

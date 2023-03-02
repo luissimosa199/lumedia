@@ -38,7 +38,7 @@ const NewPost: FunctionComponent = () => {
 
   return (
     <form
-      className="flex w-2/3 w-full flex-col gap-2 p-10"
+      className="flex w-full flex-col gap-2 p-10"
       onSubmit={handleSubmit(onSubmit)}
     >
       <label htmlFor="title">Título</label>
