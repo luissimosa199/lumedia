@@ -15,7 +15,7 @@ const PostCard: FunctionComponent<PostCardProps> = ({ post }) => {
   return (
     <div className="flex rounded-sm p-2 text-sm shadow-md bg-white" key={post.id}>
       <div className="grow">
-        <h2>{post.title}</h2>
+        <h2 className='font-semibold'>{post.title}</h2>
         <p>Autor: {post.authorName}</p>
         <p>{`${post.createAt.toLocaleDateString()}`}</p>
         <div>

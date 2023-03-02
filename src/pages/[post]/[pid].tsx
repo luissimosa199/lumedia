@@ -22,11 +22,11 @@ const Post = () => {
   }
 
   return (
-    <article className="mx-auto w-2/3 rounded p-2 shadow-md">
+    <article className="mx-auto w-2/3 rounded p-2 shadow-md my-2">
       <h1 className="mb-5 text-3xl font-semibold">{data?.title}</h1>
       <p className="text-sm italic">Publicado: {`${data?.createAt.toLocaleDateString()}`}</p>
       <p className="text-sm italic">Por: {data?.authorName}</p>
-      <div className="text-center">
+      <div className="text-left my-6">
         <p>{data?.content}</p>
       </div>
       <ul className="flex gap-1 text-xs">

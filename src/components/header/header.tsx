@@ -8,25 +8,30 @@ const Header: FunctionComponent = () => {
   return (
     <header className="flex justify-between p-4">
       <Link href="/">
-        <h1 className="hover:opacity-50 transition-all">lumedia</h1>
+        <h1 className="transition-all hover:opacity-50">lumedia</h1>
       </Link>
       <nav>
         <ul className="flex gap-2">
-          <li className="hover:opacity-50 transition-all">
+          <li className="transition-all hover:opacity-50">
             <Link href="/">Sitios</Link>
           </li>
-          <li className="hover:opacity-50 transition-all">
+          <li className="transition-all hover:opacity-50">
             <Link href="/contact">Contacto</Link>
           </li>
           {sessionData && (
-            <li className="hover:opacity-50 transition-all">
-              <Link href="/dashboard">Panel</Link>
-            </li>
+            <>
+              <li className="transition-all hover:opacity-50">
+                <Link href="/dashboard">Panel</Link>
+              </li>
+              <li className="transition-all hover:opacity-50">
+                <Link href="/posts">Índice</Link>
+              </li>
+            </>
           )}
         </ul>
       </nav>
       <button
-        className="hover:opacity-50 transition-all"
+        className="transition-all hover:opacity-50"
         onClick={sessionData ? () => void signOut() : () => void signIn()}
       >
         {sessionData ? "Salir→" : "Ingresar"}
