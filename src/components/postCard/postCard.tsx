@@ -21,7 +21,7 @@ const PostCard: FunctionComponent<PostCardProps> = ({ post }) => {
         <div>
           <ul className="flex gap-1 text-xs">
             {post.tags.map((tag, idx) => {
-              return <li className='bg-grey rounded p-1 ' key={idx}>{tag}</li>;
+              return <li className='bg-grey rounded p-1' key={idx}>{tag}</li>;
             })}
           </ul>
         </div>
