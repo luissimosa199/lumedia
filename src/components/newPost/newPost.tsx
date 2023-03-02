@@ -6,7 +6,7 @@ import { api } from "~/utils/api";
 const NewPost: FunctionComponent = () => {
   const { data: sessionData } = useSession();
 
-  const { refetch: refetchPosts } = api.post.getAll.useQuery();
+  const { refetch: refetchPosts } = api.post.getLatest.useQuery();
 
   const createPost = api.post.create.useMutation({
     onSuccess: () => {
@@ -45,27 +45,27 @@ const NewPost: FunctionComponent = () => {
       <input
         id="title"
         type="text"
-        className="rounded border"
+        className="rounded border p-1"
         {...register("title")}
       />
       <label htmlFor="content">Contenido</label>
       <textarea
         id="content"
-        className="rounded border"
+        className="rounded border p-1"
         {...register("content")}
       />
       <label htmlFor="tags">Categorías</label>
       <input
         id="tags"
         type="text"
-        className="rounded border"
+        className="rounded border p-1"
         {...register("tags")}
       />
       <label htmlFor="author">Autor</label>
       <input
         id="author"
         type="text"
-        className="rounded border"
+        className="rounded border p-1"
         {...register("author")}
         disabled
         value={sessionData?.user?.name || "Es necesario iniciar sesión"}

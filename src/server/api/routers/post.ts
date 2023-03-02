@@ -11,6 +11,15 @@ export const postRouter = createTRPCRouter({
     getAll: protectedProcedure.query(({ ctx }) => {
         return ctx.prisma.post.findMany()
     }),
+    
+    getLatest: protectedProcedure.query(({ ctx }) => {
+        return ctx.prisma.post.findMany({
+            orderBy: [{
+                createAt: 'desc'
+            }],
+            take: 10,
+        })
+    }),
 
     getOne: protectedProcedure
         .input(z.object({ id: z.string() }))

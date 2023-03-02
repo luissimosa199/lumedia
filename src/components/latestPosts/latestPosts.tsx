@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { api } from "~/utils/api";
 
 const LatestPosts: FunctionComponent = () => {
-  const { data, error, isLoading } = api.post.getAll.useQuery();
+  const { data, error, isLoading } = api.post.getLatest.useQuery();
 
   if (isLoading) {
     return <div>Loading...</div>;
