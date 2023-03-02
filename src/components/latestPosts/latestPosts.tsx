@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { api } from "~/utils/api";
+import PostCard from "../postCard/postCard";
 
 const LatestPosts: FunctionComponent = () => {
   const { data, error, isLoading } = api.post.getLatest.useQuery();
@@ -17,21 +18,10 @@ const LatestPosts: FunctionComponent = () => {
   }
   return (
     <>
-      <h2>Últimas publicaciones</h2>
+      <h2 className="text-sm">Últimas publicaciones</h2>
       {data.map((e) => {
         return (
-          <div className="rounded-sm p-2 text-sm shadow-md" key={e.id}>
-            <h2>{e.title}</h2>
-            <p>Autor: {e.authorName}</p>
-            <p>{`${e.createAt.toLocaleDateString()}`}</p>
-            <div>
-              <ul className="flex gap-1 text-xs">
-                {e.tags.map((tag, idx) => {
-                  return <li key={idx}>{tag}</li>;
-                })}
-              </ul>
-            </div>
-          </div>
+          <PostCard post={e}/>
         );
       })}
     </>
