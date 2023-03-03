@@ -27,7 +27,11 @@ const Post = () => {
       <p className="text-sm italic">Publicado: {`${data?.createAt.toLocaleDateString()}`}</p>
       <p className="text-sm italic">Por: {data?.authorName}</p>
       <div className="text-left my-6">
-        <p>{data?.content}</p>
+        <p>{data?.content.split("\n\n").map((e, idx) => {
+          return (
+            <p className="my-2 leading-relaxed" key={idx}>{e}</p>
+          )
+        })}</p>
       </div>
       <ul className="flex gap-1 text-xs">
         {data?.tags.map((tag, idx) => {
