@@ -10,7 +10,7 @@ export const postRouter = createTRPCRouter({
     getAll: protectedProcedure.query(({ ctx }) => {
         return ctx.prisma.post.findMany()
     }),
-    
+
     getLatest: protectedProcedure.query(({ ctx }) => {
         return ctx.prisma.post.findMany({
             orderBy: [{
@@ -43,8 +43,38 @@ export const postRouter = createTRPCRouter({
                     tags: input.tags,
                 }
             })
-        })
+        }),
 
-    // update ?
-    // delete ?
+    delete: protectedProcedure
+        .input(z.object({ id: z.string() }))
+        .mutation(({ ctx, input }) => {
+            return ctx.prisma.post.delete({
+                where: {
+                    id: input.id
+                }
+            })
+        }),
+
+    update: protectedProcedure
+        .input(z.object({
+            id: z.string(),
+            title: z.string().optional(),
+            content: z.string().optional(),
+            authorName: z.string().optional(),
+            authorId: z.string().optional(),
+            tags: z.string().optional(),
+        })).mutation(({ ctx, input }) => {
+            return ctx.prisma.post.update({
+                where: {
+                    id: input.id
+                },
+                data: {
+                    title: input.title,
+                    content: input.content,
+                    authorName: ctx.session.user.name || input.authorName,
+                    authorId: ctx.session.user.id,
+                    tags: input.tags,
+                }
+            })
+        })
 });
