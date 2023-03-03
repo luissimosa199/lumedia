@@ -2,6 +2,8 @@ import { FunctionComponent, useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { api } from "~/utils/api";
+import Link from "next/link";
+import Swal from "sweetalert2";
 
 const editPost: FunctionComponent = () => {
   const router = useRouter();
@@ -12,7 +14,14 @@ const editPost: FunctionComponent = () => {
     reset,
     handleSubmit,
     formState: { errors: formErrors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      title: "Cargando...",
+      content: "Cargando...",
+      tags: "Cargando...",
+      authorName: "Cargando...",
+    },
+  });
 
   const { data, error, isLoading } = api.post.getOne.useQuery(
     {
@@ -32,7 +41,7 @@ const editPost: FunctionComponent = () => {
 
   const updatePost = api.post.update.useMutation({
     onSuccess: () => {
-      alert("post updated");
+      router.push(`/post/${pid}`)
     },
   });
 
@@ -45,7 +54,20 @@ const editPost: FunctionComponent = () => {
       authorName: inputData.author,
     };
 
-    updatePost.mutate(processedData);
+    Swal.fire({
+        title: '¿Quiere guardar los cambios?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Guardar',
+        denyButtonText: `No guardar`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Guardado!', '', 'success')
+          updatePost.mutate(processedData);
+        } else if (result.isDenied) {
+          Swal.fire('Cambios no guardados', '', 'info')
+        }
+      })
   };
 
   if (isLoading) {
@@ -102,7 +124,7 @@ const editPost: FunctionComponent = () => {
             type="button"
             className="grow rounded border-2 px-4 py-2 transition-all hover:opacity-50"
           >
-            Cancelar
+            <Link href={`/post/${pid}`}>Cancelar</Link>
           </button>
         </div>
       </form>
