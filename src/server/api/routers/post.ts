@@ -58,11 +58,9 @@ export const postRouter = createTRPCRouter({
     update: protectedProcedure
         .input(z.object({
             id: z.string(),
-            title: z.string().optional(),
-            content: z.string().optional(),
-            authorName: z.string().optional(),
-            authorId: z.string().optional(),
-            tags: z.string().optional(),
+            title: z.string(),
+            content: z.string(),
+            tags: z.string().array(),
         })).mutation(({ ctx, input }) => {
             return ctx.prisma.post.update({
                 where: {
@@ -71,8 +69,6 @@ export const postRouter = createTRPCRouter({
                 data: {
                     title: input.title,
                     content: input.content,
-                    authorName: ctx.session.user.name || input.authorName,
-                    authorId: ctx.session.user.id,
                     tags: input.tags,
                 }
             })
