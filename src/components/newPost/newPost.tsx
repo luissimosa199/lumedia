@@ -30,10 +30,10 @@ const NewPost: FunctionComponent = () => {
     };
     createPost.mutate(processedData);
     reset({
-        title: '',
-        content: '',
-        tags: '',
-    })
+      title: "",
+      content: "",
+      tags: "",
+    });
   };
 
   return (
@@ -46,21 +46,24 @@ const NewPost: FunctionComponent = () => {
         id="title"
         type="text"
         className="rounded border p-1"
-        {...register("title")}
+        {...register("title", { required: true })}
       />
+      {errors.title && <p className="text-sm text-red">Tienes que ingresar un título para la publicación</p>}
       <label htmlFor="content">Contenido</label>
       <textarea
         id="content"
         className="rounded border p-1"
-        {...register("content")}
+        {...register("content", { required: true })}
       />
+      {errors.content && <p className="text-sm text-red">No olvides el contenido de la publicación</p>}
       <label htmlFor="tags">Categorías</label>
       <input
         id="tags"
         type="text"
         className="rounded border p-1"
-        {...register("tags")}
+        {...register("tags", { required: true })}
       />
+      {errors.tags && <p className="text-sm text-red">Ingresa al menos una categoría</p>}
       <label htmlFor="author">Autor</label>
       <input
         id="author"

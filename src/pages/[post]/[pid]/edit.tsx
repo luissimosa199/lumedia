@@ -91,8 +91,10 @@ const editPost: FunctionComponent = () => {
         <input
           className="mb-5 p-2 text-lg font-semibold shadow-md"
           type="text"
-          {...register("title")}
+          {...register("title", {required: true})}
         />
+        {formErrors.title && <p className="text-sm text-red mb-2">Tienes que ingresar un título para la publicación</p>}
+
         <input
           className="w-fit p-2 text-sm italic"
           type="text"
@@ -103,15 +105,17 @@ const editPost: FunctionComponent = () => {
         <textarea
           className="my-6 p-2 text-left shadow-md"
           id="content"
-          {...register("content")}
+          {...register("content", {required: true})}
           rows={15}
         ></textarea>
+        {formErrors.content && <p className="text-sm text-red mb-2">No olvides el contenido de la publicación</p>}
 
         <input
           type="text"
-          className="mb-2 w-fit p-2 text-sm italic"
-          {...register("tags")}
+          className="mb-2 w-fit p-2 text-sm italic shadow-md"
+          {...register("tags", {required: true})}
         />
+        {formErrors.tags && <p className="text-sm text-red mb-2">Ingresa al menos una categoría</p>}
 
         <div className="flex">
           <button
