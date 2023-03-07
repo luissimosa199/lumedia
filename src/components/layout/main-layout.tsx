@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from "react";
+import type { FunctionComponent, ReactNode } from "react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 

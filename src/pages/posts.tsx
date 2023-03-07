@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import { api } from "~/utils/api";
 
 const Posts: FunctionComponent = () => {

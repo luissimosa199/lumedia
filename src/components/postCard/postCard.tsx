@@ -1,5 +1,5 @@
+import type { FunctionComponent, Key } from "react";
 import Link from "next/link";
-import { FunctionComponent, Key } from "react";
 
 interface PostCardProps {
   post: {

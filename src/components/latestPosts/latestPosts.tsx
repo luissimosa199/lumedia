@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import { api } from "~/utils/api";
 import PostCard from "../postCard/postCard";
 

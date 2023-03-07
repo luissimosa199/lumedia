@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import type { FunctionComponent } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { api } from "~/utils/api";

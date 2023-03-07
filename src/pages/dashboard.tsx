@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import LatestPosts from "~/components/latestPosts/latestPosts";
 import NewPost from "~/components/newPost/newPost";
 
