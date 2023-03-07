@@ -6,7 +6,7 @@ const Hero: FunctionComponent = () => {
   const { data: sessionData } = useSession();
 
   return (
-    <div className="text-center mt-10 h-full">
+    <div className="text-center mt-[12%]">
       <h1 className="text-gray-900 text-4xl font-bold tracking-tight sm:text-6xl">
         Contenido masivo en tiempo record
       </h1>
