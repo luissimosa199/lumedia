@@ -8,7 +8,7 @@ const Header: FunctionComponent = () => {
   return (
     <header className="flex justify-between p-4">
       <Link href="/">
-        <h1 className="transition-all hover:opacity-50">lumedia</h1>
+        <h1 className="transition-all text-gray-900 font-bold hover:opacity-50">lumedia</h1>
       </Link>
       <nav>
         <ul className="flex gap-2">

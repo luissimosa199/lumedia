@@ -18,7 +18,7 @@ const Posts: FunctionComponent = () => {
 
   return (
     <div className='h-full my-2'>
-      <table className="rounded p-2 shadow-md w-75 mx-auto table-auto border-separate text-sm border-spacing-6 overflow-y-auto ">
+      <table className="rounded p-2 shadow-md mx-10 table-auto border-separate text-sm border-spacing-6 overflow-y-auto ">
         <thead>
           <tr>
             <th>Titulo</th>

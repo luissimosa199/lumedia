@@ -41,6 +41,7 @@ const NewPost: FunctionComponent = () => {
       className="flex w-full flex-col gap-2 p-10"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <h2 className="text-gray-900 text-lg font-bold">Nueva publicación</h2>
       <label htmlFor="title">Título</label>
       <input
         id="title"
