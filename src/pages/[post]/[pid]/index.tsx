@@ -1,10 +1,33 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 import { api } from "~/utils/api";
 
 const Post = () => {
   const router = useRouter();
   const { pid } = router.query;
+
+  const deletePost = api.post.delete.useMutation({
+    onSuccess: () => {
+      router.back();
+    },
+  });
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "¿Quieres borrar este post definitivamente?",
+      showDenyButton: true,
+      confirmButtonText: "Cancelar",
+      denyButtonText: "Borrar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Operación cancelada", "", "info");
+      } else if (result.isDenied) {
+        Swal.fire("Borrado!", "", "warning");
+        deletePost.mutate({ id: pid as string });
+      }
+    });
+  };
 
   const { data, error, isLoading } = api.post.getOne.useQuery({
     id: pid as string,
@@ -41,10 +64,10 @@ const Post = () => {
         </p>
       </div>
       <div className="flex">
-        <ul className="flex gap-1 text-xs grow">
+        <ul className="flex grow gap-1 text-xs">
           {data?.tags.map((tag, idx) => {
             return (
-              <li className="rounded bg-grey p-1 font-semibold h-fit" key={idx}>
+              <li className="h-fit rounded bg-grey p-1 font-semibold" key={idx}>
                 {tag}
               </li>
             );
@@ -52,9 +75,12 @@ const Post = () => {
         </ul>
         <div className="flex">
           <button className="mr-2 rounded bg-darker-blue px-4 py-2 text-white transition-all hover:opacity-50">
-            <Link href={`/post/${pid}/edit`}>Editar</Link> 
+            <Link href={`/post/${pid}/edit`}>Editar</Link>
           </button>
-          <button className="px-4 py-2 border-2 rounded transition-all hover:opacity-50">
+          <button
+            className="rounded border-2 px-4 py-2 transition-all hover:opacity-50"
+            onClick={() => void handleDelete()}
+          >
             Borrar
           </button>
         </div>

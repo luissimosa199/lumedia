@@ -29,7 +29,6 @@ const editPost: FunctionComponent = () => {
     },
     {
       onSuccess(data) {
-        console.log("success");
         reset({
           title: data?.title as string,
           content: data?.content as string,
