@@ -4,10 +4,10 @@ import Link from "next/link";
 interface PostCardProps {
   post: {
     id: Key;
-    title: String;
-    authorName: String;
+    title: string;
+    authorName: string;
     createAt: Date;
-    tags: String[];
+    tags: string[];
   };
 }
 

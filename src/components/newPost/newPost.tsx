@@ -1,5 +1,5 @@
 import type { FunctionComponent } from "react";
-import { useForm } from "react-hook-form";
+import { type FieldValues, useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import { api } from "~/utils/api";
 
@@ -10,7 +10,7 @@ const NewPost: FunctionComponent = () => {
 
   const createPost = api.post.create.useMutation({
     onSuccess: () => {
-      refetchPosts();
+      void refetchPosts()
     },
   });
 
@@ -21,7 +21,7 @@ const NewPost: FunctionComponent = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FieldValues) => {
     const processedData = {
       title: data.title,
       content: data.content,

@@ -19,9 +19,9 @@ const LatestPosts: FunctionComponent = () => {
   return (
     <>
       <h2 className="text-gray-900 text-lg font-bold">Últimas publicaciones</h2>
-      {data.map((e) => {
+      {data.map((e, idx) => {
         return (
-          <PostCard post={e}/>
+          <PostCard key={idx} post={e}/>
         );
       })}
     </>

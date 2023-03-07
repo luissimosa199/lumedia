@@ -1,11 +1,10 @@
-import type { FunctionComponent } from "react";
 import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
+import { type FieldValues, useForm } from "react-hook-form";
 import { api } from "~/utils/api";
 import Link from "next/link";
 import Swal from "sweetalert2";
 
-const editPost: FunctionComponent = () => {
+const editPost: React.FC = () => {
   const router = useRouter();
   const { pid } = router.query;
 
@@ -29,7 +28,7 @@ const editPost: FunctionComponent = () => {
     },
     {
       onSuccess(data) {
-        reset({
+        void reset({
           title: data?.title as string,
           content: data?.content as string,
           tags: data?.tags.join(", "),
@@ -40,11 +39,11 @@ const editPost: FunctionComponent = () => {
 
   const updatePost = api.post.update.useMutation({
     onSuccess: () => {
-      router.push(`/post/${pid}`)
+      void router.push(`/post/${pid as string}`)
     },
   });
 
-  const onSubmit = (inputData: any) => {
+  const onSubmit = (inputData: FieldValues) => {
     const processedData = {
       id: pid as string,
       title: inputData.title,
@@ -127,7 +126,7 @@ const editPost: FunctionComponent = () => {
             type="button"
             className="grow rounded border-2 px-4 py-2 transition-all hover:opacity-50"
           >
-            <Link href={`/post/${pid}`}>Cancelar</Link>
+            <Link href={`/post/${pid as string}`}>Cancelar</Link>
           </button>
         </div>
       </form>

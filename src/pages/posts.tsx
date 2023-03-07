@@ -31,13 +31,13 @@ const Posts: FunctionComponent = () => {
         <tbody>
           {data.map((post) => {
             return (
-              <tr className="border border-y-grey border-x-white">
+              <tr key={post.id} className="border border-y-grey border-x-white">
                 <td>{post.title}</td>
                 <td>{post.authorName}</td>
                 <td>{post.createAt.toLocaleDateString()}</td>
                 <td>
-                  {post.tags.map((tag) => {
-                    return <span className="bg-grey rounded p-1 mx-1">{tag}</span>;
+                  {post.tags.map((tag, idx) => {
+                    return <span key={idx} className="bg-grey rounded p-1 mx-1">{tag}</span>;
                   })}
                 </td>
                 <td>

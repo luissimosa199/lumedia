@@ -9,7 +9,7 @@ const Post = () => {
 
   const deletePost = api.post.delete.useMutation({
     onSuccess: () => {
-      router.back();
+      void router.back();
     },
   });
 
@@ -75,7 +75,7 @@ const Post = () => {
         </ul>
         <div className="flex">
           <button className="mr-2 rounded bg-darker-blue px-4 py-2 text-white transition-all hover:opacity-50">
-            <Link href={`/post/${pid}/edit`}>Editar</Link>
+            <Link href={`/post/${pid as string}/edit`}>Editar</Link>
           </button>
           <button
             className="rounded border-2 px-4 py-2 transition-all hover:opacity-50"
