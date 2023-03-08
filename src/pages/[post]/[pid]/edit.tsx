@@ -85,7 +85,7 @@ const EditPost: React.FC = () => {
       <h1 className="mb-2 text-center text-2xl font-bold">
         Editar publicación
       </h1>
-      <form className="flex flex-col" onSubmit={() => void handleSubmit(onSubmit)}>
+      <form className="flex flex-col" onSubmit={(e) => {e.preventDefault(); void handleSubmit(onSubmit)()}}>
         <input
           className="mb-5 p-2 text-lg font-semibold shadow-md"
           type="text"
