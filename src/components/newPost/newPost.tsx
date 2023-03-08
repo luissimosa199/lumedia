@@ -22,13 +22,18 @@ const NewPost: FunctionComponent = () => {
   } = useForm();
 
   const onSubmit = (data: FieldValues) => {
+
+    const processedTags = (data.tags as string).split(", ")
+
     const processedData = {
-      title: data.title,
-      content: data.content,
-      tags: data.tags.split(", "),
-      authorName: sessionData?.user?.name || data.author,
+      title: data.title as string,
+      content: data.content as string,
+      tags: processedTags,
+      authorName: sessionData?.user?.name || data.author as string,
     };
+
     createPost.mutate(processedData);
+
     reset({
       title: "",
       content: "",
@@ -39,7 +44,7 @@ const NewPost: FunctionComponent = () => {
   return (
     <form
       className="flex w-full flex-col gap-2 p-10"
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={() => void handleSubmit(onSubmit)}
     >
       <h2 className="text-gray-900 text-lg font-bold">Nueva publicación</h2>
       <label htmlFor="title">Título</label>

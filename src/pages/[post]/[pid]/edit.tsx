@@ -4,7 +4,7 @@ import { api } from "~/utils/api";
 import Link from "next/link";
 import Swal from "sweetalert2";
 
-const editPost: React.FC = () => {
+const EditPost: React.FC = () => {
   const router = useRouter();
   const { pid } = router.query;
 
@@ -46,13 +46,13 @@ const editPost: React.FC = () => {
   const onSubmit = (inputData: FieldValues) => {
     const processedData = {
       id: pid as string,
-      title: inputData.title,
-      content: inputData.content,
-      tags: inputData.tags.split(", "),
-      authorName: inputData.author,
+      title: inputData.title as string,
+      content: inputData.content as string,
+      tags: (inputData.tags as string).split(", "),
+      authorName: inputData.author as string,
     };
 
-    Swal.fire({
+    void Swal.fire({
         title: '¿Quiere guardar los cambios?',
         showDenyButton: true,
         showCancelButton: true,
@@ -60,10 +60,10 @@ const editPost: React.FC = () => {
         denyButtonText: `No guardar`,
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire('Guardado!', '', 'success')
+          void Swal.fire('Guardado!', '', 'success')
           updatePost.mutate(processedData);
         } else if (result.isDenied) {
-          Swal.fire('Cambios no guardados', '', 'info')
+          void Swal.fire('Cambios no guardados', '', 'info')
         }
       })
   };
@@ -85,7 +85,7 @@ const editPost: React.FC = () => {
       <h1 className="mb-2 text-center text-2xl font-bold">
         Editar publicación
       </h1>
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col" onSubmit={() => void handleSubmit(onSubmit)}>
         <input
           className="mb-5 p-2 text-lg font-semibold shadow-md"
           type="text"
@@ -134,4 +134,4 @@ const editPost: React.FC = () => {
   );
 };
 
-export default editPost;
+export default EditPost;

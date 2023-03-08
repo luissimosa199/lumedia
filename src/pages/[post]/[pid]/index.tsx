@@ -14,16 +14,16 @@ const Post = () => {
   });
 
   const handleDelete = () => {
-    Swal.fire({
+    void Swal.fire({
       title: "¿Quieres borrar este post definitivamente?",
       showDenyButton: true,
       confirmButtonText: "Cancelar",
       denyButtonText: "Borrar",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Operación cancelada", "", "info");
+        void Swal.fire("Operación cancelada", "", "info");
       } else if (result.isDenied) {
-        Swal.fire("Borrado!", "", "warning");
+        void Swal.fire("Borrado!", "", "warning");
         deletePost.mutate({ id: pid as string });
       }
     });
@@ -49,7 +49,7 @@ const Post = () => {
     <article className="mx-auto my-2 w-2/3 rounded p-2 shadow-md">
       <h1 className="mb-5 text-3xl font-semibold">{data?.title}</h1>
       <p className="text-sm italic">
-        Publicado: {`${data?.createAt.toLocaleDateString()}`}
+        Publicado: {`${data?.createAt.toLocaleDateString() as string}`}
       </p>
       <p className="text-sm italic">Por: {data?.authorName}</p>
       <div className="my-6 text-left">
