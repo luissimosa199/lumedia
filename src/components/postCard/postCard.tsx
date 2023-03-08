@@ -19,7 +19,7 @@ const PostCard: FunctionComponent<PostCardProps> = ({ post }) => {
         <p>Autor: {post.authorName}</p>
         <p>{`${post.createAt.toLocaleDateString()}`}</p>
         <div>
-          <ul className="flex gap-1 text-xs">
+          <ul className="flex gap-1 text-xs flex-wrap">
             {post.tags.map((tag, idx) => {
               return <li className='bg-grey rounded p-1' key={idx}>{tag}</li>;
             })}
