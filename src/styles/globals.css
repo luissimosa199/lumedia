@@ -20,5 +20,9 @@
   border: 3px solid white;
 }
 
+.swal-confirm-btn {
+  background-color: #1e293b !important;
+}
+
 @tailwind components;
 @tailwind utilities;

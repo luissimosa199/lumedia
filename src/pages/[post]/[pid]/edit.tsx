@@ -55,17 +55,32 @@ const EditPost: React.FC = () => {
     void Swal.fire({
         title: '¿Quiere guardar los cambios?',
         showDenyButton: true,
-        showCancelButton: true,
         confirmButtonText: 'Guardar',
         denyButtonText: `No guardar`,
+        customClass: {
+          confirmButton: 'swal-confirm-btn',
+        }
       }).then((result) => {
         if (result.isConfirmed) {
-          void Swal.fire('Guardado!', '', 'success')
+          void Swal.fire({
+            icon: 'success',
+            text: 'Guardado!',
+            customClass: {
+              confirmButton: 'swal-confirm-btn',
+            }
+          })
           updatePost.mutate(processedData);
         } else if (result.isDenied) {
-          void Swal.fire('Cambios no guardados', '', 'info')
+          void Swal.fire({
+            icon: 'info',
+            text: 'Cambios no guardados',
+            customClass: {
+              confirmButton: 'swal-confirm-btn',
+            }
+          })
         }
       })
+
   };
 
   if (isLoading) {

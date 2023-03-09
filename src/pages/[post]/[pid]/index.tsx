@@ -14,19 +14,38 @@ const Post = () => {
   });
 
   const handleDelete = () => {
+
     void Swal.fire({
       title: "¿Quieres borrar este post definitivamente?",
       showDenyButton: true,
       confirmButtonText: "Cancelar",
       denyButtonText: "Borrar",
+      customClass: {
+        confirmButton: "swal-confirm-btn",
+      },
     }).then((result) => {
       if (result.isConfirmed) {
-        void Swal.fire("Operación cancelada", "", "info");
+        void Swal.fire({
+          icon: "info",
+          text: "Operación cancelada",
+          customClass: {
+            confirmButton: "swal-confirm-btn",
+          },
+        });
       } else if (result.isDenied) {
-        void Swal.fire("Borrado!", "", "warning");
+        void Swal.fire({
+          icon: "warning",
+          text: "Borrado!",
+          customClass: {
+            confirmButton: "swal-confirm-btn",
+          },
+        });
+
         deletePost.mutate({ id: pid as string });
       }
     });
+
+
   };
 
   const { data, error, isLoading } = api.post.getOne.useQuery({
