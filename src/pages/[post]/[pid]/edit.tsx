@@ -96,7 +96,7 @@ const EditPost: React.FC = () => {
   }
 
   return (
-    <div className="mx-auto my-2 flex w-2/3 flex-col rounded p-2 shadow-md">
+    <div className="mx-auto my-2 flex w-[97%] sm:w-2/3 flex-col rounded p-2 shadow-md">
       <h1 className="mb-2 text-center text-2xl font-bold">
         Editar publicación
       </h1>

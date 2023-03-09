@@ -6,7 +6,7 @@ const Header: FunctionComponent = () => {
   const { data: sessionData } = useSession();
 
   return (
-    <header className="flex justify-between p-4">
+    <header className="flex justify-between flex-col items-center gap-2 p-4 sm:flex-row shadow-md mb-2">
       <Link href="/">
         <h1 className="transition-all text-gray-900 font-bold hover:opacity-50">lumedia</h1>
       </Link>
@@ -31,7 +31,7 @@ const Header: FunctionComponent = () => {
         </ul>
       </nav>
       <button
-        className="transition-all hover:opacity-50"
+        className="transition-all hover:opacity-50 self-end absolute sm:static"
         onClick={sessionData ? () => void signOut() : () => void signIn()}
       >
         {sessionData ? "Salir→" : "Ingresar"}

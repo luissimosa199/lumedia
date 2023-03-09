@@ -65,7 +65,7 @@ const Post = () => {
   }
 
   return (
-    <article className="mx-auto my-2 w-2/3 rounded p-2 shadow-md">
+    <article className="mx-auto my-2 w-[97%] sm:w-2/3 rounded p-2 shadow-md">
       <h1 className="mb-5 text-3xl font-semibold">{data?.title}</h1>
       <p className="text-sm italic">
         Publicado: {`${data?.createAt.toLocaleDateString() as string}`}
